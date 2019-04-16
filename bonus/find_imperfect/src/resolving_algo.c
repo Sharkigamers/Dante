@@ -19,11 +19,8 @@ int check_failed(map_t *map, int i, int j)
         map->pos_i = i;
         map->pos_j = j;
     } else {
-        map->map[i][j] = 'F';
-        if (i != 199) {
-            map->error++;
-            printf("%d   %d\n", i, j);
-        }
+        map->error++;
+        printf("%d   %d\n", i, j);
     }
     return (check);
 }

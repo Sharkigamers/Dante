@@ -39,6 +39,15 @@ void print(map_t *map, char **av)
     }
 }
 
+void check_blocus(map_t *map, char **av)
+{
+    if (map->map[atoi(av[1])][atoi(av[2])] == '*' &&
+        map->map[atoi(av[1]) - 1][atoi(av[2])] == '*' &&
+        map->map[atoi(av[1])][atoi(av[2]) - 1] == '*' &&
+        map->map[atoi(av[1]) - 1][atoi(av[2]) - 1] == '*')
+        map->map[atoi(av[1]) - 1][atoi(av[2]) - 1] = 'X';
+}
+
 int final_check(map_t *map, char **av)
 {
     if ((map->map[atoi(av[1])][atoi(av[2]) - 1] == 'X' ||
@@ -50,6 +59,7 @@ int final_check(map_t *map, char **av)
             map->map[atoi(av[1])][atoi(av[2]) - i] = '*';
     }
     map->map[atoi(av[1])][atoi(av[2])] = '*';
+    check_blocus(map, av);
     print(map, av);
     return (0);
 }
